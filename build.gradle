@@ -1,0 +1,60 @@
+
+buildscript {
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.2'
+    }
+}
+  plugins {
+    id "org.flywaydb.flyway" version "4.2.0"
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'eclipse'
+apply plugin: 'eclipse-wtp'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'org.springframework:spring-webmvc:4.2.4.RELEASE'
+    compile 'org.springframework:spring-tx:4.2.4.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.2.4.RELEASE'
+    compile group: 'org.springframework', name: 'spring-instrument', version: '4.3.8.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '4.3.8.RELEASE'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.195'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.11.3.RELEASE'
+    testCompile 'org.springframework:spring-test:4.2.4.RELEASE'
+    testCompile 'org.dbunit:dbunit:2.5.3'
+    testCompile group: 'org.dbunit', name: 'dbunit', version:'2.4.9'
+    testCompile 'org.mockito:mockito-all:1.9.5'
+    providedCompile "javax.servlet:javax.servlet-api:3.1.0"
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+}
+def tomcatVersion = '7.0.59'
+dependencies {
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+                "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+                "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+// *** flyway Plugin Settings
+flyway {
+  url = "${dbUrl}"
+  user = "${dbUser}"
+  password = "${dbPassword}"
+  driver = "${dbDriver}"
+  locations = [
+      "filesystem:${projectDir}/flyway/ddl,
+      "filesystem:${projectDir}/flyway/dml
+      ]
+}
+
