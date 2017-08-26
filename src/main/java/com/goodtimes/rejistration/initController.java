@@ -28,6 +28,8 @@ public class initController {
 	public String initRejister(){
 
 		rejisterService.test();
+		
+		
 
 
 

@@ -11,6 +11,7 @@ buildscript {
 }
   plugins {
     id "org.flywaydb.flyway" version "4.2.0"
+    id "com.arenagod.gradle.MybatisGenerator" version "1.3"
 }
 
 apply plugin: 'java'
@@ -29,6 +30,9 @@ dependencies {
     compile 'org.springframework:spring-webmvc:4.2.4.RELEASE'
     compile 'org.springframework:spring-tx:4.2.4.RELEASE'
     compile 'org.springframework:spring-jdbc:4.2.4.RELEASE'
+    compile 'org.mybatis:mybatis:3.3.0'
+    compile 'org.mybatis:mybatis-spring:1.2.3'
+	compile group: 'org.mybatis.generator', name: 'mybatis-generator-maven-plugin', version: '1.3.5'
     compile group: 'org.springframework', name: 'spring-instrument', version: '4.3.8.RELEASE'
     compile group: 'org.springframework', name: 'spring-web', version: '4.3.8.RELEASE'
     compile group: 'com.h2database', name: 'h2', version: '1.4.195'
@@ -53,8 +57,7 @@ flyway {
   password = "${dbPassword}"
   driver = "${dbDriver}"
   locations = [
-      "filesystem:${projectDir}/flyway/ddl,
-      "filesystem:${projectDir}/flyway/dml
+      "filesystem:${projectDir}/flyway/ddl"
       ]
 }
 
