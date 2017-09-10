@@ -41,6 +41,7 @@ dependencies {
     testCompile 'org.dbunit:dbunit:2.5.3'
     testCompile group: 'org.dbunit', name: 'dbunit', version:'2.4.9'
     testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '0.9.26'
     providedCompile "javax.servlet:javax.servlet-api:3.1.0"
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
 }
