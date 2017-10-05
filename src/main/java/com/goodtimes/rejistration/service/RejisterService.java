@@ -13,7 +13,7 @@ public class RejisterService {
 
 	}
 
-	public void test() {
+	private void test() {
 		System.out.println("testメソッドに入りました");
 	}
 

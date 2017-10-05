@@ -27,9 +27,9 @@ public class initController {
 	@RequestMapping(value="/init/",params="rejister",method=RequestMethod.GET)
 	public String initRejister(){
 
-		rejisterService.test();
-		
-		
+		//rejisterService.test();
+
+
 
 
 

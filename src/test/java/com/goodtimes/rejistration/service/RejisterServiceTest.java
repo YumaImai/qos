@@ -1,5 +1,8 @@
 package com.goodtimes.rejistration.service;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -11,7 +14,18 @@ public class RejisterServiceTest {
 	@Test
 	public void test001(){
 		RejisterService service =new RejisterService();
-		service.test();
+		try {
+		Method method=RejisterService.class.getDeclaredMethod("test");
+		method.setAccessible(true);
+		try {
+			method.invoke(service);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
 
 
 
